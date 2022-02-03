@@ -24,7 +24,7 @@ const MainDisplay = () => {
         getData();
     }, [])
     const getData = async () => {
-        const { data } = await axios(`https://filterpage.herokuapp.com/`);
+        const { data } = await axios(`https://filterpage.herokuapp.com/data/`);
         setCountryData([...data["england-and-wales"].events, ...data["northern-ireland"].events, ...data["scotland"].events]);
 
     };

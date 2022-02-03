@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'build')))
 
-app.get('/', async (req, res) => {
+app.get('/data', async (req, res) => {
     try {
         const { data } = await axios.get(`https://www.gov.uk/bank-holidays.json`);
         res.status(200).send(data)
