@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-export function filterByLastWeek(launches) {
+export function filterByLastWeek() {
     const todayDate = new Date()
     const startDayOfPrevWeek = moment(todayDate).subtract(1, 'week').startOf('week').format('LLLL');
     const lastDayOfPrevWeek = moment(todayDate).subtract(1, 'week').endOf('week').format('LLLL');
@@ -12,10 +12,17 @@ export function filterByLastWeek(launches) {
     return [start, end];
 }
 
-export function filterByLastMonth(launches) {
+export function getYesterdayDate() {
     const todayDate = new Date()
-    const startDayOfPrevMonth = moment(todayDate).subtract(1, 'month').startOf('month').format('LLLL')
-    const lastDayOfPrevMonth = moment(todayDate).subtract(1, 'month').endOf('month').format('LLLL')
+    const yesterdayDate = moment(todayDate).subtract(1, 'days').format('LLLL');
+
+    return yesterdayDate;
+}
+
+export function filterByLastMonth() {
+    const todayDate = new Date()
+    const startDayOfPrevMonth = moment(todayDate).subtract(1, 'month').startOf('month').format('LLLL');
+    const lastDayOfPrevMonth = moment(todayDate).subtract(1, 'month').endOf('month').format('LLLL');
 
     const startDay = new Date(startDayOfPrevMonth);
     const endDay = new Date(lastDayOfPrevMonth);
@@ -25,7 +32,7 @@ export function filterByLastMonth(launches) {
     return [start, end];
 }
 
-export function filterByLastYear(launches) {
+export function filterByLastYear() {
     const todayDate = new Date();
     const startDayOfPrevYear = moment(todayDate).subtract(1, 'year').startOf('month').format('LLLL')
     const lastDayOfPrevYear = moment(todayDate).subtract(1, 'year').endOf('year').format('LLLL')

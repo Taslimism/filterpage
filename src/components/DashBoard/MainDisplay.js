@@ -3,7 +3,7 @@ import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import style from './MainDisplay.module.css'
 
-import { filterByLastWeek, filterByLastMonth, filterByLastYear } from './helper';
+import { filterByLastWeek, filterByLastMonth, filterByLastYear, getYesterdayDate } from './helper';
 
 
 
@@ -67,6 +67,16 @@ const MainDisplay = () => {
         if (e.target.value === 'All') {
             getData();
             setPastDataSelected(false);
+        }
+
+        if (e.target.value === 'Yesterday') {
+            setPastDataSelected(true);
+            const yesterdayDate = getYesterdayDate()
+            setPastData(() => {
+                return countryData.filter(country => {
+                    return new Date(country.date.split("-").join(",")) === new Date(yesterdayDate);
+                })
+            });
         }
 
         if (e.target.value === 'Last Week') {
